@@ -4,7 +4,7 @@ import pandas as pd
 import re
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://newuser:pass@localhost/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -41,7 +41,11 @@ def import_vcf_into_db():
     # df.to_sql(db, 'gene')
 
     df = pd.read_csv('vcf_example.csv')
-    df.to_sql(name='gene', con='postgresql://postgres:root@localhost/postgres')
+    df.to_sql(name='gene', con='postgresql://newuser:pass@localhost/postgres', index=False)
+    sql_id_index = 'create index id_index on gene(id)'
+    sql_chrom_pos_index = 'create index chrom_pos_index on gene(chrom,pos)'
+    db.engine.execute(sql_id_index)
+    db.engine.execute(sql_chrom_pos_index)
     return 'TOP'
 
 
