@@ -10,5 +10,9 @@ class Gene(db.Model):
     alt = db.Column(db.String(100))
     info = db.Column(db.String(100))
 
-    def init(self, chrom):
+    def init(self, chrom,  pos, ref, alt, info):
         self.chrom = chrom
+        self.pos = pos
+        self.ref = ref
+        self.alt = alt
+        self.info = info

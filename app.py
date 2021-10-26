@@ -1,29 +1,28 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+from vcf_reader import read_vcf
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://newuser:pass@localhost/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
 @app.route('/')
-def hello_world():  # put application's code here
+def hello_world():
     return 'Hello World!'
 
 
-class Gene(db.Model):
-    tablename = 'gene'
-    id = db.Column(db.String(100), primary_key="True")
-    chrom = db.Column(db.String(200))
-    pos = db.Column(db.Integer)
-    ref = db.Column(db.String(100))
-    alt = db.Column(db.String(100))
-    info = db.Column(db.String(100))
+@app.route('/load')
+def import_vcf_into_db():
+    # df = read_vcf('/Users/danilodobras/Downloads/hg37variants1000g.vcf')
+    # df.to_csv('vcf_example.csv', index=False)
+    # df.to_sql(db, 'gene')
 
-    def init(self, chrom):
-        self.chrom = chrom
-
+    df = pd.read_csv('vcf_example.csv')
+    df.to_sql(name='gene', con='postgresql://newuser:pass@localhost/postgres')
+    return 'TOP'
 
 if __name__ == '__main__':
     app.run()
