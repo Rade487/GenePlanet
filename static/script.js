@@ -1,9 +1,9 @@
 
 function init(){
-document.getElementById("search").addEventListener("input", ispis)
+document.getElementById("search").addEventListener("input", search_gene)
 }
 
-function ispis(){
+function search_gene(){
     search = document.getElementById("search").value
     let re = new RegExp('^[0-9]{1,2} [0-9]+');
     if(search.startsWith('rs') || search.match(re))
@@ -15,12 +15,12 @@ function ispis(){
         	'search' : document.getElementById("search").value
         },
         datatype: 'json',
-        success: function(text) {nesto(text);},
+        success: function(text) {load_table(text);},
         cache: false
     })
 }
 
-function nesto(text){
+function load_table(text){
 
     let body = document.getElementById('table_body')
     body.innerHTML = ''
