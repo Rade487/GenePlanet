@@ -10,6 +10,6 @@ class Config:
 
     FLASK_APP = environ.get('FLASK_APP')
     # Database
-    SQLALCHEMY_DATABASE_URI = 'postgresql://newuser:pass@localhost/postgres'  #environ.get("SQLALCHEMY_DATABASE_URI")
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost/postgres'  #environ.get("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -27,12 +27,14 @@ function load_table(text){
     if(text != ''){
     let row = document.createElement('tr');
 		row.innerHTML = `
-					<td>${text.chrom}</td>
-					<td>${text.pos}</td>
-					<td>${text.id}</td>
-					<td>${text.ref}</td>
-					<td>${text.alt}</td>
-					<td>${text.format}</td>
+					<td>${text[1].chrom}</td>
+					<td>${text[1].pos}</td>
+					<td>${text[1].id}</td>
+					<td>${text[1].ref}</td>
+					<td>${text[1].alt}</td>
+					<td>${text[1].format}</td>
+					<td>${text[2]}</td>
+					<td>${text[3]}</td>
 				`
 		body.appendChild(row)
     }

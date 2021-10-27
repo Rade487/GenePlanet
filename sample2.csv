@@ -1,4 +1,4 @@
-chrom,pos,id,red,alt,qual,filter,info,format,sample2
+chrom,pos,id,ref,alt,qual,filter,info,format,sample2
 0,1,10177,rs367896724,A,AC,.,PASS,AF=0.0324;DR2=0.03;IMP,GT:DS:AP1:AP2:GP,"0|0:0.06:0.06:0:0.94,0.06,0"
 1,1,10235,rs540431307,T,TA,.,PASS,AF=0;DR2=0;IMP,GT:DS:AP1:AP2:GP,"0|0:0:0:0:1,0,0"
 2,1,10352,rs555500075,T,TA,.,PASS,AF=0.5876;DR2=0.07;IMP,GT:DS:AP1:AP2:GP,"0|1:1.18:0.45:0.72:0.15,0.52,0.33"
