@@ -37,7 +37,6 @@ def import_vcf_into_db():
 @app.route('/submit')
 def find_by_search_input():
     input_text = request.args['search']
-    # input_text = 'rs367896724'
     if input_text.startswith('rs'):
         try:
             row = Gene.query.filter_by(id=input_text).first()
