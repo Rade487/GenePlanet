@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import environ
 
 db = SQLAlchemy()
 
@@ -19,5 +18,7 @@ def init_app():
 
 
 app = init_app()
+
+
 if __name__ == "__main__":
     app.run()

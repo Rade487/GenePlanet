@@ -31,7 +31,7 @@ def import_vcf_into_db():
 
     db.engine.execute(sql_primary_key_sample1)
     db.engine.execute(sql_primary_key_sample2)
-    return 'TOP'
+    return 'Data loaded in db. Populated tables are gene, sample1 and sample2'
 
 
 @app.route('/submit')
@@ -59,7 +59,3 @@ def find_by_search_input():
             return ''
     else:
         return ''
-
-
-# if __name__ == '__main__':
-#     app.run()
