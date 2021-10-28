@@ -13,7 +13,6 @@ def hello_world():
 @app.route('/load')
 def import_vcf_into_db():
 
-
     # PART 1
     create_table_from_vcf('vcf_example.csv', 'gene')
     sql_id_index = 'create index id_index on gene(id)'
@@ -22,7 +21,6 @@ def import_vcf_into_db():
     db.engine.execute(sql_id_index)
     db.engine.execute(sql_chrom_pos_index)
     db.engine.execute(sql_primary_key_gene)
-
 
     # PART 2
     sql_primary_key_sample1 = 'ALTER TABLE sample1 ADD PRIMARY KEY (index)'
@@ -41,14 +39,20 @@ def find_by_search_input():
     input_text = request.args['search']
     # input_text = 'rs367896724'
     if input_text.startswith('rs'):
-        row = Gene.query.filter_by(id=input_text).first()
+        try:
+            row = Gene.query.filter_by(id=input_text).first()
+        finally:
+            db.session.remove()
         if row is not None:
             return row.as_dict()
         else:
             return ''
     elif re.match('^[0-9]{1,2} [0-9]+', input_text):
         input_parts = input_text.split(' ')
-        row = Gene.query.filter_by(chrom=input_parts[0]).filter_by(pos=input_parts[1]).first()
+        try:
+            row = Gene.query.filter_by(chrom=input_parts[0]).filter_by(pos=input_parts[1]).first()
+        finally:
+            db.session.remove()
         if row is not None:
             return row.as_dict()
         else:
