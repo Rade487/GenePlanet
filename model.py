@@ -1,4 +1,4 @@
-from __init__ import db
+from gene_planet import db
 
 
 class Gene(db.Model):

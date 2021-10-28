@@ -31,20 +31,18 @@ def import_vcf_into_db():
 
     db.engine.execute(sql_primary_key_sample1)
     db.engine.execute(sql_primary_key_sample2)
-    return 'TOP'
+    return 'Data loaded in db. Populated tables are gene, sample1 and sample2'
 
 
 @app.route('/submit')
 def find_by_search_input():
     input_text = request.args['search']
-    # input_text = 'rs367896724'
     sample1 = ''
     sample2 = ''
     if input_text.startswith('rs'):
         row = Gene.query.filter_by(id=input_text).first()
 
         if row is not None:
-
             sam1 = Sample1.query.filter_by(id=input_text).first()
             sam2 = Sample2.query.filter_by(id=input_text).first()
             if sam1 is not None:
@@ -73,4 +71,3 @@ def find_by_search_input():
             return ''
     else:
         return ''
-
